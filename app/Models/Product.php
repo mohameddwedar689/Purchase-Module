@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fill_table = [
+    protected $fillable = [
         'product_name',
         'description',
         'category',
@@ -21,5 +21,14 @@ class Product extends Model
     public static function getAll(){
         // dd($products = self::all());
         return $products = self::all();
+    }
+    public function create($request){
+        $product = new Product;
+        $product->product_name = $request->product_name;
+        $product->description = $request->description;
+        $product->category = $request->category;
+        $product->price = $request->price;
+        $product->stock_quantity = $request->stock_quantity;
+        $product->save();    
     }
 }

@@ -23,13 +23,9 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $product= new Product;
-        $product->product_name = $request->product_name;
-        $product->description = $request->description;
-        $product->category = $request->category;
-        $product->price = $request->price;
-        $product->stock_quantity = $request->stock_quantity;
-        $product->save();        
+        $data = $request->all();
+        $product= new Product;     
+        $product->create($request);      
         return redirect('/product/');
     }
     public function show(string $id)
