@@ -18,4 +18,8 @@ class Product extends Model
         'price',
         'stock_quantity'
     ];
+    public static function getAll(){
+        // dd($products = self::all());
+        return $products = self::all();
+    }
 }
