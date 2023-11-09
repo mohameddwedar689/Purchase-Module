@@ -30,6 +30,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->stock_quantity = $request->stock_quantity;
         $product->save();        
+        return redirect('/product/');
     }
     public function show(string $id)
     {
