@@ -1,6 +1,8 @@
 
 @extends('layouts.app')
 
+
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -13,6 +15,7 @@
                         <p class="card-text ">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <h4 class="text-primary">{{$product->price}}$</h4>
                         <a href="#" class="btn btn-danger">Buy IT</a> 
+                        <button class="btn btn-success">Click Me</button>
                     </div>
                 </div>
             </div>
@@ -20,3 +23,11 @@
     </div>
 </div>
 @endsection
+
+@push('jquery')
+<script type="module">
+        $("button").click(function(){
+            alert("Thanks");
+        });
+    </script>
+@endpush

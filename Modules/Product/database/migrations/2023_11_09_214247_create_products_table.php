@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('category', 100);
             $table->decimal('price', 10, 2);
             $table->integer('quantity');
-            $table->bolean('active');
+            $table->boolean('active');
             $table->timestamps();
         });
     }
