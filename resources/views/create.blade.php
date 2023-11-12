@@ -8,6 +8,7 @@
 <body>
     <form action="{{url('product')}}" method="post">
         @csrf
+        <div class="position-absolute bottom-50 end-50">
 <div class="mb-3">
   <label for="product_name" class="form-label">product_name</label><br>
   <input type="text" class="form-control" id="product_name" name="product_name"><br><br>
@@ -30,6 +31,7 @@
 </div>
 <div class="col-auto">
     <button type="submit" class="btn btn-primary mb-3">Add product</button>
+  </div>
   </div>
   </form>
 </body>

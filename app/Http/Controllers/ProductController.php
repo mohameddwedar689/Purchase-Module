@@ -19,8 +19,6 @@ class ProductController extends Controller
     {
         return view('create');
     }
-
-
     public function store(ProductRequest $request)
     {
         $data = $request->all();
@@ -52,8 +50,9 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy($post){
+      $Db = Product::findOrFail($post);
+      $Db->delete();
+      return redirect('/product/');
     }
 }
