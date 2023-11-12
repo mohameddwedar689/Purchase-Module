@@ -15,6 +15,11 @@
                         <p class="card-text ">{{$product->description}}</p>
                         <h4 class="text-primary">{{$product->price}}$</h4>
                         <a href="#" class="btn btn-danger">Buy IT</a> 
+                        <form style="display:inline;" action="{{route('product.destroy',['product'=>$product->id])}}" method="post">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>
