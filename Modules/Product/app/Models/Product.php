@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Product\Database\factories\ProductFactory;
 
+use Modules\Invoice\app\Models\Invoice;
+
 class Product extends Model
 {
     use HasFactory;
@@ -26,6 +28,11 @@ class Product extends Model
         // dd($products = self::all());
         return $products = self::all();
     }
+    // Get Product
+    public static function getProduct($id){
+        // dd($products = self::all());
+        return $product = self::find($id);
+    }
     public function create($request){
         $product = new Product;
         $product->name = $request->name;
@@ -39,5 +46,9 @@ class Product extends Model
     protected static function newFactory(): ProductFactory
     {
         //return ProductFactory::new();
+    }
+    ################################## Relations ####################
+    public function invoices(){
+        return $this->belongsToMany(Invoice::class, 'products_invoices');
     }
 }
