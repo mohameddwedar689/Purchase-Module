@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Invoice\app\Models\Invoice;
+use Modules\Product\app\Models\Product;
 use Modules\Invoice\app\Http\Requests\InvoiceRequest;
 
 class InvoiceController extends Controller
@@ -23,18 +24,21 @@ class InvoiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $req)
     {
-        return view('invoice::create');
+        // return $req;
+        //  dd($req);
+        $product = Product::getProduct($req->id);
+        return view('invoice::create', compact('product'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(InvoiceRequest $request): RedirectResponse
+    public function store(InvoiceRequest $request)
     {
-        return $request->validated();
-        return Invoice::newInvoice($request->validated());
+        Invoice::newInvoice($request);
+        return redirect()->route('invoice');
     }
 
     /**

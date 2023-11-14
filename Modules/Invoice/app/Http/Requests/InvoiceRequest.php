@@ -14,8 +14,9 @@ class InvoiceRequest extends FormRequest
         return [
             'user_id' => 'required',
             'product_id' => 'required',
-            'Qty' => 'required|integer|min:1',
-            'total' => 'required|integer|min:1',        ];
+            'quantity' => 'required|integer|min:1',
+            'price' => 'required|decimal:2|min:1',
+            ];
     }
 
     /**
