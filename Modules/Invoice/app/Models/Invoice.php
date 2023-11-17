@@ -47,7 +47,8 @@ class Invoice extends Model
         $invoice->product_id = $data-> product_id;
         $invoice->quantity = $data-> quantity;
         $invoice->total = $data-> total;
-        return $invoice->save();
+        $invoice->save();
+        $invoice->products()->syncWithoutDetaching($data->product_id);
         // return self::insert($data);
     }
 
@@ -62,6 +63,6 @@ class Invoice extends Model
     }
     ######################################### Relations ###########################
     public function products(){
-        return $this->belongsToMany(Product::class, 'products_invoices');
+        return $this->belongsToMany(Product::class, 'invoice_product');
     }
 }

@@ -17,19 +17,21 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::getAll();
+        $invoices = Invoice::with('products')->get();
         return view('invoice::index', compact('invoices'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $req)
+    // public function create(Request $req) >> the old 
+    public function create()
     {
         // return $req;
         //  dd($req);
-        $product = Product::getProduct($req->id);
-        return view('invoice::create', compact('product'));
+        // $product = Product::getProduct($req->id);
+        $products = Product::getAll();
+        return view('invoice::create2', compact('products'));
     }
 
     /**
