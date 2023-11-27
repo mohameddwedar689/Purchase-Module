@@ -66,4 +66,12 @@ class ProductController extends Controller
     {
         //
     }
+
+    /**
+     * Get the specified resource from storage.
+     */
+    public function selectedProduct(Request $req)
+    {
+        dd($req);
+    }
 }
