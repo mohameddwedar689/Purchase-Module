@@ -12,6 +12,7 @@ use Modules\Invoice\app\Http\Requests\InvoiceRequest;
 
 class InvoiceController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
@@ -37,8 +38,9 @@ class InvoiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(InvoiceRequest $request)
+    public function store(Request $request)//InvoiceRequest
     {
+        dd($request);
         Invoice::newInvoice($request);
         return redirect()->route('invoice');
     }
@@ -75,4 +77,5 @@ class InvoiceController extends Controller
     {
         //
     }
+
 }
