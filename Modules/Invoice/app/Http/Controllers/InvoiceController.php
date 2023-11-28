@@ -12,30 +12,33 @@ use Modules\Invoice\app\Http\Requests\InvoiceRequest;
 
 class InvoiceController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $invoices = Invoice::getAll();
+        $invoices = Invoice::with('products')->get();
         return view('invoice::index', compact('invoices'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $req)
+    // public function create(Request $req) >> the old 
+    public function create()
     {
         // return $req;
         //  dd($req);
-        $product = Product::getProduct($req->id);
-        return view('invoice::create', compact('product'));
+        // $product = Product::getProduct($req->id);
+        $products = Product::getAll();
+        return view('invoice::create2', compact('products'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(InvoiceRequest $request)
+    public function store(Request $request)//InvoiceRequest
     {
         
         Invoice::newInvoice($request);
@@ -82,4 +85,5 @@ class InvoiceController extends Controller
         $Db->delete();
         return redirect('/invoice/');
       }
+
 }

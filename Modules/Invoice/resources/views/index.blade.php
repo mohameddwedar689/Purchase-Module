@@ -18,8 +18,12 @@
   @foreach($invoices as $invoice)
     <tr>
       <th scope="row">{{$invoice->id}}</th>
-      <td>{{Auth::user()->name;}}</td>
-      <td>{{$invoice->product_id}}</td>
+      <td>{{Auth::user()->name}}</td>
+      <td>
+        @foreach($invoice->products as $product)
+        {{$product->name}}
+        @endforeach
+      </td>
       
       <td>{{$invoice->quantity}}</td>
       <td>{{$invoice->total}}</td>
