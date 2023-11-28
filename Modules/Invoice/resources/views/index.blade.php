@@ -7,7 +7,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">employee_Name</th>
-      <th scope="col">Product_Name</th>
+      <th scope="col">product_id</th>
       
       <th scope="col">Quantity</th>
       <th scope="col">totalPrice</th>
@@ -19,15 +19,18 @@
     <tr>
       <th scope="row">{{$invoice->id}}</th>
       <td>{{Auth::user()->name;}}</td>
-      <td>product name</td>
+      <td>{{$invoice->product_id}}</td>
       
       <td>{{$invoice->quantity}}</td>
       <td>{{$invoice->total}}</td>
       
       <td>
-        <a href="{{route('invoice.edit',$invoice->id)}}" class="btn btn-success">Edit</a> 
-        
-        <button class="btn btn-danger">Delete</button>
+        <a href="{{route('invoice.edit',$invoice->id)}}" class="btn btn-success">Edit</a>     
+        <form style="display:inline;" action="{{route('invoice.destroy',['invoice'=>$invoice->id])}}" method="post">
+            @method('delete')
+            @csrf
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form> 
       </td>
       
     </tr>

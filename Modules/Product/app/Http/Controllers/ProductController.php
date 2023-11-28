@@ -1,7 +1,7 @@
 <?php
 
 namespace Modules\Product\app\Http\Controllers;
-
+use App\Http\Requests\ProductRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -30,11 +30,13 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(ProductRequest $request)
     {
-        //
+        $data = $request->all();
+        $product= new Product;     
+        $product->create($request);      
+        return redirect('/product/');
     }
-
     /**
      * Show the specified resource.
      */
@@ -54,7 +56,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
         //
     }
@@ -62,8 +64,9 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        //
-    }
+    public function destroy($post){
+        $Db = Product::findOrFail($post);
+        $Db->delete();
+        return redirect('/product/');
+      }
 }

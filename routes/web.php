@@ -13,9 +13,5 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 //Route::view('/products1','products');
-Route::resource('product', ProductController::class);
-Auth::routes();
-Route::delete('/product/{product}','App\Http\Controllers\productController@destroy')->name('product.destroy');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

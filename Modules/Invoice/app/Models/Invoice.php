@@ -26,7 +26,7 @@ class Invoice extends Model
                             'updated_at'
                         ];
     
-    protected static function newFactory(): InvoiceFactory
+    protected static function newFactory()
     {
         //return InvoiceFactory::new();
     }

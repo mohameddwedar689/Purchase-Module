@@ -18,19 +18,22 @@
   <tbody>
   @foreach($products as $product)
     <tr>
-      <th scope="row">1</th>
+      <th scope="row">{{$product->id}}</th>
       <td>{{$product->name}}</td>
       <td>{{$product->description}}</td>
       <td>{{$product->price}}</td>
       <td>{{$product->quantity}}</td>
       <td>{{$product->active}}</td>
       <td>
-        <a href="{{route('invoice.create',$id=$product->id)}}" class="btn btn-danger">Buy IT</a> 
         <a href="{{url('invoice/create?id='.$product->id)}}" class="btn btn-primary">Buy IT</a> 
-        <button class="btn btn-success">Delete</button>
+        <form style="display:inline;" action="{{route('product.destroy',['product'=>$product->id])}}" method="post">
+            @method('delete')
+            @csrf
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>      
       </td>
       
-    </tr>
+      </tr>
     @endforeach
   </tbody>
 </table>

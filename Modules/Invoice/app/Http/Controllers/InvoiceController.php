@@ -37,8 +37,9 @@ class InvoiceController extends Controller
      */
     public function store(InvoiceRequest $request)
     {
+        
         Invoice::newInvoice($request);
-        return redirect()->route('invoice');
+        return redirect(url('/invoice'));
     }
 
     /**
@@ -55,22 +56,30 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        return view('invoice::edit');
+        $invoice=Invoice::findOrFail($id);
+        return view('invoice::edit', compact('invoice'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request)
     {
-        //
+        $invoice = Invoice::findOrFail($request->invoice_id);
+        $product = Product::findOrFail($request->product_id);
+        $price = $product->price;
+        $invoice->quantity = $request->quantity;
+        $invoice->total = $price * $request->quantity ;
+        $invoice->save();
+        return redirect(url('/invoice'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        //
-    }
+    public function destroy($post){
+        $Db = Invoice::findOrFail($post);
+        $Db->delete();
+        return redirect('/invoice/');
+      }
 }

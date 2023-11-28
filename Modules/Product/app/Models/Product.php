@@ -35,15 +35,17 @@ class Product extends Model
     }
     public function create($request){
         $product = new Product;
-        $product->name = $request->name;
+        $product->name = $request->product_name;
         $product->description = $request->description;
         $product->category = $request->category;
         $product->price = $request->price;
-        $product->quantity = $request->quantity;
+        $product->quantity = $request->stock_quantity;
+        $product->image = 1 ; 
+        $product->active = 1 ; 
         $product->save();    
     }
     
-    protected static function newFactory(): ProductFactory
+    protected static function newFactory()
     {
         //return ProductFactory::new();
     }
