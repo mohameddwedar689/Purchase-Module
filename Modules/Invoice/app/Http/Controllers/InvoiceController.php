@@ -25,22 +25,28 @@ class InvoiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    // public function create(Request $req) >> the old 
-    public function create()
+    public function create(Request $req)
     {
+        
+        $product = Product::getProduct($req->id);
+        
+        return view('invoice::create', compact('product'));
+    }
+    // the secend create form
+    public function create2(){
+
         // return $req;
         //  dd($req);
-        // $product = Product::getProduct($req->id);
-        $products = Product::getAll();
-        return view('invoice::create2', compact('products'));
+        // $product = Product::getAll();
     }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)//InvoiceRequest
     {
-        
+        $product = Product::findOrFail($request->product_id);
+        if($request->quantity > $product->quantity)
+        return back();
         Invoice::newInvoice($request);
         return redirect(url('/invoice'));
     }
