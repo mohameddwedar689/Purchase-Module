@@ -37,7 +37,9 @@ class InvoiceController extends Controller
 
         // return $req;
         //  dd($req);
-        // $product = Product::getAll();
+        $products = Product::getAll();
+        return view('invoice::create2', compact('products'));
+
     }
     /**
      * Store a newly created resource in storage.

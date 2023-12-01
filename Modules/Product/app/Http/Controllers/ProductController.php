@@ -69,4 +69,10 @@ class ProductController extends Controller
         $Db->delete();
         return redirect('/product/');
       }
+
+      public function selectedProduct(Request $req){
+        // return 1;
+        dd($req);
+
+      }
 }

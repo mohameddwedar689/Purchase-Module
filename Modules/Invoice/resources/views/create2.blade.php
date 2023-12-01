@@ -88,9 +88,9 @@
                 $('#add').click(function(){
                     console.log(Array.isArray(selectedValue) ? selectedValue.join() : selectedValue);
                     $.ajax({
-                                url: "{{route('selectedProduct')}}",
+                                url: "{{url('product/selected/2')}}?id="+selectedValue,
                                 type:"GET",
-                                    data: { id: selectedValue},
+                                    // data: { id: selectedValue},
                                 success: function (response) {
                                         console.log(response);
                                         // $('#post-data').append(response);
